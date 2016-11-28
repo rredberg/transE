@@ -1,26 +1,26 @@
-import pywikibot
+#import pywikibot
 import csv
 import numpy as np
 from math import sqrt
 
-fbTrainPath = "train.txt"
-triplets = []
-with open(fbTrainPath) as tsv:
-	for line in csv.reader(tsv, delimiter="\t"):
-		triplets.append(line)
+def main():
+    fbTrainPath = "train.txt"
+    triplets = []
+    with open(fbTrainPath) as tsv:
+	    for line in csv.reader(tsv, delimiter="\t"):
+		    triplets.append(line)
+    # entities = set([triplet[0] for triplet in triplets] + [triplet[2] for triplet in triplets])
+    # relations = set([triplet[1] for triplet in triplets])
+    entitySet = set()
+    relationSet = set()
+    for triplet in triplets:
+	    entities.add(triplet[0])
+	    entities.add(triplet[2])
+	    relations.add(triplet[1])
+    epsilon = 0.1
 
-# entities = set([triplet[0] for triplet in triplets] + [triplet[2] for triplet in triplets])
-# relations = set([triplet[1] for triplet in triplets])
-entitySet = set()
-relationSet = set()
-for triplet in triplets:
-	entities.add(triplet[0])
-	entities.add(triplet[2])
-	relations.add(triplet[1])
-
-epsilon = 0.1
 def cost():
-
+    pass
 
 
 def learnTransE(k, batchSize, trainingSet, entities, labels, margin):
@@ -31,3 +31,8 @@ def learnTransE(k, batchSize, trainingSet, entities, labels, margin):
 	while True: # cost() > epsilon or num_iter < x
 		entityNorm = np.linalg.norm(entityEmbeddings)
 		entityEmbeddings = entityEmbeddings/entityNorm
+
+
+
+if __name__ == '__main__':
+    main()
